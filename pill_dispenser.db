@@ -1,0 +1,33 @@
+import sqlite3
+
+def init_database():
+    conn = sqlite3.connect('pill_dispenser.db')
+    cursor = conn.cursor()
+    
+    # Create users table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL,
+            name TEXT,
+            age INTEGER,
+            birthday TEXT,
+            address TEXT,
+            blood_type TEXT,
+            symptoms TEXT
+        )
+    ''')
+
+    # Create reminders table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS reminders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            reminder_time TEXT,
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )
+    ''')
+
+    conn.commit()
+    conn.close()

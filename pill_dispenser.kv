@@ -1,0 +1,160 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Login'
+        TextInput:
+            id: username
+            hint_text: 'Username'
+        TextInput:
+            id: password
+            hint_text: 'Password'
+            password: True
+        Button:
+            text: 'Login'
+            on_press: root.login(username.text, password.text)
+        Button:
+            text: 'Register'
+            on_press: app.root.current = 'register'
+
+<RegisterScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Register'
+        TextInput:
+            id: username
+            hint_text: 'Username'
+        TextInput:
+            id: password
+            hint_text: 'Password'
+            password: True
+        TextInput:
+            id: name
+            hint_text: 'Full Name'
+        TextInput:
+            id: age
+            hint_text: 'Age'
+        TextInput:
+            id: birthday
+            hint_text: 'Birthday (YYYY-MM-DD)'
+        TextInput:
+            id: address
+            hint_text: 'Address'
+        TextInput:
+            id: blood_type
+            hint_text: 'Blood Type'
+        TextInput:
+            id: symptoms
+            hint_text: 'Symptoms'
+        Button:
+            text: 'Create Account'
+            on_press: root.register_user(username.text, password.text, name.text, age.text, birthday.text, address.text, blood_type.text, symptoms.text)
+        Button:
+            text: 'Back to Login'
+            on_press: app.root.current = 'login'
+            
+<ProfileScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        Label:
+            text: 'Edit Profile'
+            font_size: 24
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: name
+            hint_text: 'Full Name'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: age
+            hint_text: 'Age'
+            multiline: False
+            input_filter: 'int'
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: birthday
+            hint_text: 'Birthday (YYYY-MM-DD)'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: address
+            hint_text: 'Address'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: blood_type
+            hint_text: 'Blood Type'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: symptoms
+            hint_text: 'Symptoms'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        Button:
+            text: 'Save Changes'
+            size_hint_y: None
+            height: 50
+            on_press: root.update_profile(
+                name.text, age.text, birthday.text, address.text, blood_type.text, symptoms.text
+            )
+
+        Button:
+            text: 'Back'
+            size_hint_y: None
+            height: 50
+            on_press: app.root.current = 'status'
+<ReminderScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        Label:
+            text: 'Set Pill Reminder'
+            font_size: 24
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: date
+            hint_text: 'Date (YYYY-MM-DD)'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: time
+            hint_text: 'Time (HH:MM)'
+            multiline: False
+            size_hint_y: None
+            height: 40
+
+        Button:
+            text: 'Set Reminder'
+            size_hint_y: None
+            height: 50
+            on_press: root.set_reminder(date.text, time.text)
+
+        Button:
+            text: 'Back'
+            size_hint_y: None
+            height: 50
+            on_press: app.root.current = 'status'
+    
